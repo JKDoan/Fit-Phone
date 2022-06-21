@@ -1,0 +1,23 @@
+[
+    {
+"id": 1,
+"imageName": "bookIcon",
+"icon": "../bookIcon.png",
+"title": "Read",
+"description": "Dedicate 2 hours of reading per day"
+    },
+    {
+        "id": 2,
+        "imageName": "meditationIcon",
+        "icon": "../meditation.png",
+        "title": "Meditation",
+        "description": "Dedicate 30min of meditation per day"
+    },
+    {
+        "id": 3,
+        "imageName": "meditationIcon",
+        "icon": "../workout.png",
+        "title": "Workout",
+        "description": "Dedicate 1 hour of workout per day"
+    }
+]

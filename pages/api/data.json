@@ -1,17 +1,50 @@
 {
-  "progress": {
-    "total": 100,
-    "completed": 50,
-    "remaining": 50
-  },
+  "lastOpenedDay": "Sun Jun 19 2022",
+  "launched": false,
   "items": [
     {
       "id": "1",
-      "title": "Item 1",
+      "title": "Meditation",
       "progress": {
         "total": 100,
         "completed": 50,
-        "remaining": 50
+        "remaining": 50,
+        "previousDays": [3, 2.5, 3, 3, 1, 2, 2.5],
+        "completedDays": 7,
+        "allDays": 14,
+        "completedHours": 2,
+        "allHours": 3,
+        "color" : "#CB82F6"
+      }
+    },
+    {
+      "id": "2",
+      "title": "Workout",
+      "progress": {
+        "total": 100,
+        "completed": 30,
+        "remaining": 70,
+        "previousDays": [1, 1.5, 2, 2, 1.5, 2, 1.5],
+        "completedDays": 13,
+        "allDays": 14,
+        "completedHours": 1.5,
+        "allHours": 2,
+        "color" : "#3B82F6"
+      }
+    },
+    {
+      "id": "3",
+      "title": "Study",
+      "progress": {
+        "total": 100,
+        "completed": 80,
+        "remaining": 20,
+        "previousDays": [2, 0.5, 1, 2, 1, 2, 1],
+        "completedDays": 7,
+        "allDays": 14,
+        "completedHours": 1.5,
+        "allHours": 2,
+        "color" : "#FBD2F6"
       }
     }
   ]

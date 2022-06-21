@@ -44,20 +44,20 @@ import "rc-time-picker/assets/index.css";
 //     );
 // import {ChartConfig} from '../components/ChartConfig';
 const data = {
-  labels: ["January", "February", "March", "April", "May", "June"],
+  labels: ["January", "February", "March", "April", "May", "June", "July"],
   datasets: [
-    {
-      label: "My First dataset",
-      data: [1, 2, 3, 1, 5, 6],
-      // backgroundColor: "rgba(59, 130, 246, 0.2)",
-      borderColor: "#FF6384",
-    },
-    {
-      label: "My First dataset",
-      data: [6, 3, 3, 2, 1, 6],
-      // backgroundColor: "#FF6384",
-      borderColor: "#3B82F6",
-    },
+    // {
+    //   label: "My First dataset",
+    //   data: [1, 2, 3, 1, 5, 6],
+    //   // backgroundColor: "rgba(59, 130, 246, 0.2)",
+    //   borderColor: "#FF6384",
+    // },
+    // {
+    //   label: "My First dataset",
+    //   data: [6, 3, 3, 2, 1, 6],
+    //   // backgroundColor: "#FF6384",
+    //   borderColor: "#3B82F6",
+    // },
   ],
 };
 const options = {
@@ -114,14 +114,9 @@ function useOverallProgressData() {
 
   return { data, isLoading, callback };
 }
-const str = 'HH:mm';
-
-
-
 
 export default function OverallProgress() {
-  const [modalOpen, setModalOpen] = React.useState(false);
-  const [time, setTime] = React.useState("");
+  let dataSet = new Array();
 
   const {
     data: myData,
@@ -129,28 +124,21 @@ export default function OverallProgress() {
     callback: loadData,
   } = useOverallProgressData();
 
-  function onChange(value) {
-
-    // console.log(value && value.format(str));
-    try{
-    setTime(value.format(str))
-    }catch(error){
-
-    }
-    console.log(time)
-  }
-
-  const sendData = (newTime) => {
-    if(time == "00:00"){
-    alert("Select meaningful time!");
-
-    }else{
-    alert("Your question was successfully sent!" + time);
-    }
+  const calcu = () => {
+    myData.items.forEach((activity) => {
+      dataSet.push({
+        label: activity.title,
+        data: activity.progress.previousDays,
+        borderColor: activity.progress.color,
+      });
+    });
+    data.datasets = dataSet;
   };
-
   React.useEffect(() => {
     loadData();
+    if (myData.launched == false) {
+      prompt("How was your dream?");
+    }
   }, []);
 
   console.log("myData", myData);
@@ -162,15 +150,46 @@ export default function OverallProgress() {
           <div>Loading...</div>
         ) : (
           <div>
+            {myData.launched ? (
+              <></>
+            ) : (
+              <div hidden="hidden">
+                {/* {prompt("How was your dream?")}
+                {(myData.launched = true)} */}
+              </div>
+            )}
+            <div className="chart-container p-2">
+              <h1 className="overall-progress-title">Overall Progress</h1>
+              {myData.items.length > 0 ? (
+                <div className="line-chart">
+                  {calcu()}
+                  <Line data={data} options={options} />
+                </div>
+              ) : (
+                <h1>No available activites</h1>
+              )}
 
-         
-        <div className="chart-container p-2">
-          <h1 className="overall-progress-title">Overall Progress</h1>
-          <Line data={data} options={options} />
-        </div>
-        <h1 className="overall-progress-title">Status Per Activity</h1>
-        <div className="items">
-          <div className="item">
+              {/* <Line data={data} options={options} /> */}
+            </div>
+            <h1 className="overall-progress-title">Status Per Activity</h1>
+            <div className="items">
+              {myData.items.length > 0 ? (
+                myData.items.map((activity) => (
+                  <div className="item">
+                    {/* {console.log("Compl Days: " + activity)} */}
+                    <ProgressItem
+                      key={activity.id}
+                      completedDays={activity.progress.completedDays}
+                      activity={activity.title}
+                      allDays={activity.progress.allDays}
+                    />
+                  </div>
+                ))
+              ) : (
+                <h1>No available activites</h1>
+              )}
+
+              {/* <div className="item">
             <ProgressItem activity="Meditation" />
           </div>
           <div className="item">
@@ -181,60 +200,9 @@ export default function OverallProgress() {
           </div>
           <div className="item">
             <ProgressItem activity="Spirituality" />
+          </div> */}
+            </div>
           </div>
-        </div>
-        <Button
-          color="primary"
-          type="button"
-          onClick={() => setModalOpen(!modalOpen)}
-        >
-          Launch demo modal
-        </Button>
-        <Modal toggle={() => setModalOpen(!modalOpen)} isOpen={modalOpen}>
-          <div className=" modal-header">
-            <h5 className=" modal-title" id="exampleModalLabel">
-              Modal title
-            </h5>
-            <button
-              aria-label="Close"
-              className=" close"
-              type="button"
-              onClick={() => setModalOpen(!modalOpen)}
-            >
-              <span aria-hidden={true}>×</span>
-            </button>
-          </div>
-          <ModalBody className="modal-body">
-            <h1></h1>
-            <TimePicker
-                  placeholder="hh-mm"
-                  style={{ width: 100}}
-                  showSecond={false}
-                  // defaultValue={moment()}
-                  className="time-picker"
-                  onChange={onChange}
-            />
-
-            {/* {time} */}
-          </ModalBody>
-          <ModalFooter>
-            <Button
-              color="secondary"
-              type="button"
-              onClick={() => setModalOpen(!modalOpen)}
-            >
-              Close
-            </Button>
-            <Button
-              color="primary"
-              type="button"
-              onClick={() => sendData(time)}
-            >
-              Save changes
-            </Button>
-          </ModalFooter>
-        </Modal>
-        </div>
         )}
       </div>
       {/* <Script src="../scripts/script.js" strategy="lazyOnload" /> */}

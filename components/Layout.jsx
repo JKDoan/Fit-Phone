@@ -18,7 +18,7 @@ export default function Layout(props) {
           <footer
             className="
               bg-stone-900 p-3 w-full max-w-lg place-self-center
-              grid grid-cols-5 gap-2 place-items-center
+              grid grid-cols-4 gap-2 place-items-center
             "
           >
             <Link href={`/`}>
@@ -39,11 +39,6 @@ export default function Layout(props) {
             <Link href={`/progress`}>
               <div className="cursor-pointer hover:bg-orange-700 p-3 text-3xl rounded-md bg-slate-700">
                 P4
-              </div>
-            </Link>
-            <Link href={`/activities`}>
-              <div className="cursor-pointer hover:bg-orange-700 p-3 text-3xl rounded-md bg-slate-700">
-                P5
               </div>
             </Link>
           </footer>
