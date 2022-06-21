@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+.overall-progress-title{
+  margin: 10px;
+}
+.chart-container{
+  min-width: 100px;
+  min-height: 50px;
+}
+/* .items{
+  display: flex;
+  justify-content: space-around;
+  
+  flex-direction: column;
+} */
+
+/* .row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 1vw;
+}
+
+.column {
+  flex-direction: column;
+  flex: 50%;
+  max-width: 25%;
+  flex-basis: 50%;
+  margin: 10px;
+}
+
+
+.items .column{
+    border: 1px rgb(70, 70, 70) solid;
+    padding: 10px;
+} */
+.items{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 1em;
+  grid-row-gap: 3em;
+}
+.doughnut-parent{
+  width: 120px;
+  height: 120px;
+}
+.progress-item-container{
+  margin: 5px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 4fr;
+  grid-template-areas: "overlap";
+}
+
+.item{
+  padding: 10px;
+  border: 1px solid;
+  border-radius: 15px;
+}
+
+.doughnut-parent, .progress-info{
+  grid-area: overlap;
+  align-self: center;
+  justify-self: center;
+  grid-row: 2;
+}
+.progress-item-activity-name{
+  grid-row: 1;
+  grid-area: overlap;
+  align-self: center;
+  justify-self: center;
+}
+.progress-info{
+  /* display: flex; */
+  text-align: center;
+}
+.modal-body{
+  text-align: center;
+}
+
+
+
+/*  */
+/* .progress-item-container{
+  justify-content: center;
+}
+.doughnut-data{
+  position: relative;
+
+} */
+
+
+

@@ -1,0 +1,18 @@
+{
+  "progress": {
+    "total": 100,
+    "completed": 50,
+    "remaining": 50
+  },
+  "items": [
+    {
+      "id": "1",
+      "title": "Item 1",
+      "progress": {
+        "total": 100,
+        "completed": 50,
+        "remaining": 50
+      }
+    }
+  ]
+}
